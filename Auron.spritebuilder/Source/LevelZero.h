@@ -8,9 +8,11 @@
 
 #import "CCNode.h"
 
-@interface LevelZero : CCNode
+@interface LevelZero : CCNode <CCPhysicsCollisionDelegate>
 {
     CCNode* _auron;
+    CCNode* _slime;
+    CCPhysicsNode* _physicsNode;
     NSDate* startTime;
 }
 
