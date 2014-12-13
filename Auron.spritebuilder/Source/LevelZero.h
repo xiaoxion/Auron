@@ -15,6 +15,9 @@
     CCNode* _slime;
     CCNode* _ground;
     CCNode* _pauseButton;
+    CCNode* _heartOne;
+    CCNode* _heartTwo;
+    CCNode* _levelZero;
     
     CCPhysicsNode* _physicsNode;
 }

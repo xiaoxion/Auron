@@ -17,7 +17,6 @@ NSDate* startSound;
 int hitCount = 0;
 bool jumped = false;
 bool doubleJump = false;
-MainScene *mainScene;
 
 // Initialization and Loading of assets.
 - (void)didLoadFromCCB {
@@ -29,8 +28,6 @@ MainScene *mainScene;
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     [audio preloadEffect:@"Jump.mp3"];
     [audio preloadEffect:@"Jab.mp3"];
-    
-    
 }
 
 // Moves player and Slime
@@ -78,6 +75,18 @@ MainScene *mainScene;
     doubleJump = false;
 }
 
+// Checks hits and removes hearts
+- (void)removeHeart {
+    if (hitCount == 1) {
+        _heartTwo.visible = false;
+    } else if (hitCount == 2) {
+        _heartOne.visible = false;
+    } else if (hitCount == 3) {
+        _levelZero.paused = true;
+        _levelZero.userInteractionEnabled = NO;
+    }
+}
+
 // Checks collision and elimnates player if they touch the slime
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA slime:(CCNode *)nodeB {
     [_auron.physicsBody applyImpulse:ccp(0, 1000.f)];
@@ -88,7 +97,7 @@ MainScene *mainScene;
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     [audio playEffect:@"Jab.mp3"];
     hitCount = hitCount + 1;
-    [mainScene removeHeart:hitCount];
+    [self removeHeart];
 }
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA ground:(CCNode *)nodeB {
