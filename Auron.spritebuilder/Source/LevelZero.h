@@ -7,13 +7,16 @@
 //
 
 #import "CCNode.h"
+#import "MainScene.h"
 
 @interface LevelZero : CCNode <CCPhysicsCollisionDelegate>
 {
     CCNode* _auron;
     CCNode* _slime;
+    CCNode* _ground;
+    CCNode* _pauseButton;
+    
     CCPhysicsNode* _physicsNode;
-    NSDate* startTime;
 }
 
 @end

@@ -59,7 +59,7 @@
 	<key>publishResolution_ios_tablet</key>
 	<false/>
 	<key>publishResolution_ios_tablethd</key>
-	<false/>
+	<true/>
 	<key>publishToZipFile</key>
 	<false/>
 	<key>resourceAutoScaleFactor</key>
@@ -79,21 +79,14 @@
 			<true/>
 		</dict>
 		<key>AuronLevel</key>
-		<dict>
-			<key>isDirty</key>
-			<true/>
-		</dict>
+		<dict/>
 		<key>AuronSprites</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>
 		<key>SlimeSprites</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>

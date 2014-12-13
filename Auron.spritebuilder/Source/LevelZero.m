@@ -11,7 +11,13 @@
 static const CGFloat speed = 80.0f;
 
 @implementation LevelZero
+
+NSDate* startJump;
+NSDate* startSound;
+int hitCount = 0;
 bool jumped = false;
+bool doubleJump = false;
+MainScene *mainScene;
 
 // Initialization and Loading of assets.
 - (void)didLoadFromCCB {
@@ -19,43 +25,75 @@ bool jumped = false;
     _physicsNode.collisionDelegate = self;
     _slime.physicsBody.collisionType = @"slime";
     _auron.physicsBody.collisionType = @"hero";
+    _ground.physicsBody.collisionType = @"ground";
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     [audio preloadEffect:@"Jump.mp3"];
     [audio preloadEffect:@"Jab.mp3"];
+    
+    
 }
 
 // Moves player and Slime
 - (void)update:(CCTime)delta {
-    _auron.position = ccp(_auron.position.x + delta * speed, _auron.position.y);
+    if (_auron.position.x < 1130.0f) {
+        _auron.position = ccp(_auron.position.x + delta * speed, _auron.position.y);
+    }
     _slime.position = ccp(_slime.position.x - delta * speed, _slime.position.y);
 }
 
 // Checks when jump begins and limits jump height.
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    startTime = [NSDate date];
+    startJump = [NSDate date];
 }
 
 - (void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
     NSDate *nowTime = [NSDate date];
-    NSTimeInterval deltaTime = [nowTime timeIntervalSinceDate:startTime];
+    NSTimeInterval deltaTime = [nowTime timeIntervalSinceDate:startJump];
     
+    // If acceptable tap, auron will jump.
     if (deltaTime < .5) {
-        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+        // Checks if user has jumped previously
         if (jumped) {
-            [_auron.physicsBody applyImpulse:ccp(0, 250.0f)];
+            //Checks if user gets a smaller double jump
+            if (doubleJump) {
+                return;
+            } else {
+                doubleJump = true;
+                [_auron.physicsBody applyImpulse:ccp(0, 550.0f)];
+            }
         } else {
             jumped = true;
-            [_auron.physicsBody applyImpulse:ccp(0, 1000.0f)];
+            [_auron.physicsBody applyImpulse:ccp(0, 750.0f)];
         }
+        
+        // Plays audio effect
+        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
         [audio playEffect:@"Jump.mp3"];
     }
 }
 
+// Resets jump identifiers
+- (void)resetJump {
+    jumped = false;
+    doubleJump = false;
+}
+
 // Checks collision and elimnates player if they touch the slime
-- (void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA slime:(CCNode *)nodeB {
-    [_auron.physicsBody applyImpulse:ccp(0, 100.f) atWorldPoint:ccp(0, 100.f)];
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA slime:(CCNode *)nodeB {
+    [_auron.physicsBody applyImpulse:ccp(0, 1000.f)];
+    return true;
+}
+
+- (void)ccPhysicsCollisionSeparate:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA slime:(CCNode *)nodeB {
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     [audio playEffect:@"Jab.mp3"];
+    hitCount = hitCount + 1;
+    [mainScene removeHeart:hitCount];
+}
+
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA ground:(CCNode *)nodeB {
+    [self resetJump];
+    return true;
 }
 
 @end
