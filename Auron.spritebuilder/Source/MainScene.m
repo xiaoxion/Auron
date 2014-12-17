@@ -3,7 +3,6 @@
 @implementation MainScene
 
 bool paused = false;
-static MainScene *_instance = nil;
 
 -(void)onPause {
     if (paused) {

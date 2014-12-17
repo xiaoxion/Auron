@@ -95,11 +95,6 @@
 			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>
-		<key>ccbResources</key>
-		<dict>
-			<key>previewFolderHidden</key>
-			<true/>
-		</dict>
 		<key>ccbResources/ccbButtonHighlighted.png</key>
 		<dict>
 			<key>scaleFrom</key>
