@@ -11,6 +11,7 @@
 static const CGFloat speed = 80.0f;
 
 @implementation LevelZero
+@synthesize delegate;
 
 NSDate* startJump;
 NSDate* startSound;
@@ -20,6 +21,7 @@ bool doubleJump = false;
 
 // Initialization and Loading of assets.
 - (void)didLoadFromCCB {
+    hitCount = 0;
     self.userInteractionEnabled = TRUE;
     _physicsNode.collisionDelegate = self;
     _slimeOne.physicsBody.collisionType = @"slime";
@@ -35,6 +37,8 @@ bool doubleJump = false;
 - (void)update:(CCTime)delta {
     if (_auron.position.x < 1130.0f) {
         _auron.position = ccp(_auron.position.x + delta * speed, _auron.position.y);
+    } else {
+        [delegate onWin];
     }
     _slimeOne.position = ccp(_slimeOne.position.x - delta * speed, _slimeOne.position.y);
     _slimeTwo.position = ccp(_slimeTwo.position.x - delta * speed, _slimeTwo.position.y);
@@ -65,6 +69,8 @@ bool doubleJump = false;
             [_auron.physicsBody applyImpulse:ccp(0, 750.0f)];
         }
         
+        [delegate removeTutorial];
+        
         // Plays audio effect
         OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
         [audio playEffect:@"Jump.mp3"];
@@ -77,17 +83,6 @@ bool doubleJump = false;
     doubleJump = false;
 }
 
-// Checks hits and removes hearts
-- (void)removeHeart {
-    if (hitCount == 1) {
-        _heartTwo.visible = false;
-    } else if (hitCount == 2) {
-        _heartOne.visible = false;
-        _levelZero.paused = true;
-        _levelZero.userInteractionEnabled = NO;
-    }
-}
-
 // Checks collision and elimnates player if they touch the slime
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA slime:(CCNode *)nodeB {
     [_auron.physicsBody applyImpulse:ccp(0, 500.f)];
@@ -98,7 +93,7 @@ bool doubleJump = false;
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     [audio playEffect:@"Jab.mp3"];
     hitCount = hitCount + 1;
-    [self removeHeart];
+    [delegate removeHeart:hitCount];
 }
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA ground:(CCNode *)nodeB {

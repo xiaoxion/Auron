@@ -590,7 +590,7 @@ http://soundbible.com/</string>
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>onCick</string>
+							<string>onPlayButton</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -917,6 +917,8 @@ http://soundbible.com/</string>
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

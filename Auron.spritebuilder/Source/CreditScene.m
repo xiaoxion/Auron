@@ -9,8 +9,9 @@
 #import "CreditScene.h"
 
 @implementation CreditScene
-- (void)onClick {
-    CCScene *mainScene = [CCBReader loadAsScene:@"MainScene"];
-    [[CCDirector sharedDirector] replaceScene:mainScene];
+
+- (void)onPlayButton {
+    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainLevel"]];
 }
+
 @end

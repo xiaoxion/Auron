@@ -20,6 +20,7 @@
 		7B97E84F1A41223B00D207B3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B97E84A1A41223B00D207B3 /* Default@2x.png */; };
 		7BDC3D071A435BF700700799 /* MainLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC3D061A435BF700700799 /* MainLevel.m */; };
 		7BDC3D0A1A435E1400700799 /* CreditScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC3D091A435E1400700799 /* CreditScene.m */; };
+		7BDC3D181A43849600700799 /* Tutorial.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BDC3D171A43849600700799 /* Tutorial.plist */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
@@ -109,6 +110,7 @@
 		7BDC3D061A435BF700700799 /* MainLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainLevel.m; path = Source/MainLevel.m; sourceTree = "<group>"; };
 		7BDC3D081A435E1400700799 /* CreditScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreditScene.h; path = Source/CreditScene.h; sourceTree = "<group>"; };
 		7BDC3D091A435E1400700799 /* CreditScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreditScene.m; path = Source/CreditScene.m; sourceTree = "<group>"; };
+		7BDC3D171A43849600700799 /* Tutorial.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Tutorial.plist; path = Source/Tutorial.plist; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
 		B71F5908188484E7003F4D28 /* iPad-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old@2x.png"; path = "Icons/iPad-old@2x.png"; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				7B1120071A2BD6D2007C93F7 /* LevelZero.m */,
 				7BDC3D081A435E1400700799 /* CreditScene.h */,
 				7BDC3D091A435E1400700799 /* CreditScene.m */,
+				7BDC3D171A43849600700799 /* Tutorial.plist */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
 			name = Source;
@@ -478,6 +481,7 @@
 			files = (
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				7B97E84E1A41223B00D207B3 /* Default.png in Resources */,
+				7BDC3D181A43849600700799 /* Tutorial.plist in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,

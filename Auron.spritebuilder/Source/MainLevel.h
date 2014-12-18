@@ -1,14 +1,6 @@
-//
-//  MainLevel.h
-//  Auron
-//
-//  Created by Esau Rubio on 12/18/14.
-//  Copyright (c) 2014 Apportable. All rights reserved.
-//
+#import "LevelZero.h"
 
-#import "CCNode.h"
-
-@interface MainLevel : CCNode
+@interface MainLevel : CCNode <RemoveHeartDelegate>
 {
     CCScrollView* _levelZeroView;
     CCButton* _replayButton;

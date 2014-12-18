@@ -1,3 +1,11 @@
+@protocol RemoveHeartDelegate <NSObject>
+
+- (void)onWin;
+- (void)removeHeart:(int)hitCount;
+- (void)removeTutorial;
+
+@end
+
 @interface LevelZero : CCNode <CCPhysicsCollisionDelegate>
 {
     CCNode* _auron;
@@ -10,5 +18,7 @@
     
     CCPhysicsNode* _physicsNode;
 }
+
+@property (nonatomic, assign) id <RemoveHeartDelegate> delegate;
 
 @end
