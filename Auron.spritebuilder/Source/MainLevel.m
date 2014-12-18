@@ -12,6 +12,7 @@
 LevelZero *mainLevel;
 
 - (void)didLoadFromCCB {
+    // Writes the Check for tutorial
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
     NSString *plistPath;
@@ -27,6 +28,7 @@ LevelZero *mainLevel;
         _tutorial.visible = false;
     }
     
+    // Sets the delegate for the content nodes
     self.userInteractionEnabled = true;
     [LevelZero node];
     mainLevel = _levelZeroView.contentNode;
@@ -34,12 +36,14 @@ LevelZero *mainLevel;
     _replayButton.visible = false;
 }
 
+// Scroll the level with the player
 - (void)update:(CCTime)delta {
     if (!_levelZeroView.paused) {
         _levelZeroView.scrollPosition = ccp(_levelZeroView.scrollPosition.x + delta * 80.0f, _levelZeroView.scrollPosition.y);
     }
 }
 
+// Pause button interactions
 - (void)onPause {
     if (_levelZeroView.paused) {
         _levelZeroView.paused = false;
@@ -50,14 +54,17 @@ LevelZero *mainLevel;
     }
 }
 
+// If player reaches the end, they win to credits
 -(void)onWin {
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"CreditScene"]];
 }
 
+// Removes hearts if the player gets hit
 - (void)removeHeart:(int)hitCount{
     if (hitCount == 1) {
         _heartTwo.visible = false;
     } else if (hitCount == 2) {
+        // also shows replay button
         _heartOne.visible = false;
         _levelZeroView.paused = true;
         _levelZeroView.userInteractionEnabled = NO;
@@ -65,10 +72,12 @@ LevelZero *mainLevel;
     }
 }
 
+// removes tutorial
 - (void)removeTutorial {
     _tutorial.visible = false;
 }
 
+// Sets the value to no and reinstatiates the level
 - (void)onReplay {
     mainLevel.delegate = nil;
     NSString *error;

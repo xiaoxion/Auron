@@ -10,6 +10,7 @@
 
 @implementation CreditScene
 
+// Plays the game and sends player to MainLevel Scene
 - (void)onPlayButton {
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainLevel"]];
 }

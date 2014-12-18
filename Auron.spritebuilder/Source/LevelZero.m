@@ -93,6 +93,7 @@ bool doubleJump = false;
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     [audio playEffect:@"Jab.mp3"];
     hitCount = hitCount + 1;
+    // Sends the delegate to remove the heart
     [delegate removeHeart:hitCount];
 }
 
