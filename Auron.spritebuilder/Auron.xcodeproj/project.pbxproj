@@ -18,6 +18,8 @@
 		7B97E84D1A41223B00D207B3 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B97E8481A41223B00D207B3 /* Default-Landscape~ipad.png */; };
 		7B97E84E1A41223B00D207B3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B97E8491A41223B00D207B3 /* Default.png */; };
 		7B97E84F1A41223B00D207B3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B97E84A1A41223B00D207B3 /* Default@2x.png */; };
+		7BDC3D071A435BF700700799 /* MainLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC3D061A435BF700700799 /* MainLevel.m */; };
+		7BDC3D0A1A435E1400700799 /* CreditScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC3D091A435E1400700799 /* CreditScene.m */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
@@ -83,20 +85,11 @@
 /* Begin PBXFileReference section */
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100B19748281004C1E1D /* BridgeKitV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BridgeKitV3.framework; path = System/Library/Frameworks/BridgeKitV3.framework; sourceTree = SDKROOT; };
-		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
-		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
-		5B121013197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
-		5B121015197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
-		5B12101B19748413004C1E1D /* AuronActivity.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = AuronActivity.java; path = Source/Platforms/Android/java/org/cocos2d/Auron/AuronActivity.java; sourceTree = "<group>"; };
-		5B12102E197484FA004C1E1D /* AuronActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuronActivity.h; path = Source/Platforms/Android/AuronActivity.h; sourceTree = "<group>"; };
-		5B12102F197484FA004C1E1D /* AuronActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuronActivity.m; path = Source/Platforms/Android/AuronActivity.m; sourceTree = "<group>"; };
 		5B121033197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/Android/Info.plist; sourceTree = "<group>"; };
 		5B121034197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/iOS/Info.plist; sourceTree = "<group>"; };
 		5BA4619E1974C88900785744 /* AndroidManifest.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = AndroidManifest.xml; path = Platforms/Android/AndroidManifest.xml; sourceTree = "<group>"; };
 		7A40360219DDEE84007B6E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/Mac/Info.plist; sourceTree = "<group>"; };
 		7A40360319DDEE84007B6E8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/Platforms/Mac/main.m; sourceTree = "<group>"; };
-		7A40360519DDEE84007B6E8F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/Platforms/Mac/AppDelegate.h; sourceTree = "<group>"; };
-		7A40360619DDEE84007B6E8F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/Platforms/Mac/AppDelegate.m; sourceTree = "<group>"; };
 		7A4036F419DE3FA8007B6E8F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		7A59493A19E37F9300F65F90 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		7A59493C19E37FB200F65F90 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
@@ -112,6 +105,10 @@
 		7B97E8481A41223B00D207B3 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Launch Images/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		7B97E8491A41223B00D207B3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Launch Images/Default.png"; sourceTree = "<group>"; };
 		7B97E84A1A41223B00D207B3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Launch Images/Default@2x.png"; sourceTree = "<group>"; };
+		7BDC3D051A435BF700700799 /* MainLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainLevel.h; path = Source/MainLevel.h; sourceTree = "<group>"; };
+		7BDC3D061A435BF700700799 /* MainLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainLevel.m; path = Source/MainLevel.m; sourceTree = "<group>"; };
+		7BDC3D081A435E1400700799 /* CreditScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreditScene.h; path = Source/CreditScene.h; sourceTree = "<group>"; };
+		7BDC3D091A435E1400700799 /* CreditScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreditScene.m; path = Source/CreditScene.m; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
 		B71F5908188484E7003F4D28 /* iPad-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old@2x.png"; path = "Icons/iPad-old@2x.png"; sourceTree = "<group>"; };
@@ -167,55 +164,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B12100D197483EE004C1E1D /* res */ = {
-			isa = PBXGroup;
-			children = (
-				5B12100E197483EE004C1E1D /* drawable-hdpi */,
-				5B121010197483EE004C1E1D /* drawable-mdpi */,
-				5B121012197483EE004C1E1D /* drawable-xhdpi */,
-				5B121014197483EE004C1E1D /* drawable-xxhdpi */,
-			);
-			path = res;
-			sourceTree = "<group>";
-		};
-		5B12100E197483EE004C1E1D /* drawable-hdpi */ = {
-			isa = PBXGroup;
-			children = (
-				5B12100F197483EE004C1E1D /* ic_launcher.png */,
-			);
-			path = "drawable-hdpi";
-			sourceTree = "<group>";
-		};
-		5B121010197483EE004C1E1D /* drawable-mdpi */ = {
-			isa = PBXGroup;
-			children = (
-				5B121011197483EE004C1E1D /* ic_launcher.png */,
-			);
-			path = "drawable-mdpi";
-			sourceTree = "<group>";
-		};
-		5B121012197483EE004C1E1D /* drawable-xhdpi */ = {
-			isa = PBXGroup;
-			children = (
-				5B121013197483EE004C1E1D /* ic_launcher.png */,
-			);
-			path = "drawable-xhdpi";
-			sourceTree = "<group>";
-		};
-		5B121014197483EE004C1E1D /* drawable-xxhdpi */ = {
-			isa = PBXGroup;
-			children = (
-				5B121015197483EE004C1E1D /* ic_launcher.png */,
-			);
-			path = "drawable-xxhdpi";
-			sourceTree = "<group>";
-		};
 		7A40362019DDEF0D007B6E8F /* Platforms */ = {
 			isa = PBXGroup;
 			children = (
 				7A40362119DDF08C007B6E8F /* iOS */,
-				7A40362219DDF090007B6E8F /* Android */,
-				7A9791C019E6FAC5001FFC4D /* Mac */,
 			);
 			name = Platforms;
 			sourceTree = "<group>";
@@ -227,16 +179,6 @@
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		7A40362219DDF090007B6E8F /* Android */ = {
-			isa = PBXGroup;
-			children = (
-				5B12101B19748413004C1E1D /* AuronActivity.java */,
-				5B12102E197484FA004C1E1D /* AuronActivity.h */,
-				5B12102F197484FA004C1E1D /* AuronActivity.m */,
-			);
-			name = Android;
 			sourceTree = "<group>";
 		};
 		7A40365D19DDF896007B6E8F /* Platforms */ = {
@@ -311,15 +253,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7A9791C019E6FAC5001FFC4D /* Mac */ = {
-			isa = PBXGroup;
-			children = (
-				7A40360519DDEE84007B6E8F /* AppDelegate.h */,
-				7A40360619DDEE84007B6E8F /* AppDelegate.m */,
-			);
-			name = Mac;
-			sourceTree = "<group>";
-		};
 		7B755A161A2BF6A300B2C2EB /* Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,9 +276,13 @@
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				B7378992180767190076A88C /* MainScene.h */,
 				B7378993180767190076A88C /* MainScene.m */,
-				D352B48019EC608A00829775 /* MetalShaders */,
+				7BDC3D051A435BF700700799 /* MainLevel.h */,
+				7BDC3D061A435BF700700799 /* MainLevel.m */,
 				7B1120061A2BD6D2007C93F7 /* LevelZero.h */,
 				7B1120071A2BD6D2007C93F7 /* LevelZero.m */,
+				7BDC3D081A435E1400700799 /* CreditScene.h */,
+				7BDC3D091A435E1400700799 /* CreditScene.m */,
+				D352B48019EC608A00829775 /* MetalShaders */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -420,7 +357,6 @@
 			children = (
 				7B755A161A2BF6A300B2C2EB /* Audio */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
-				5B12100D197483EE004C1E1D /* res */,
 				B73789911807667A0076A88C /* Icons */,
 				B737893A180761570076A88C /* Published-iOS */,
 			);
@@ -600,8 +536,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B73789871807631A0076A88C /* main.m in Sources */,
+				7BDC3D0A1A435E1400700799 /* CreditScene.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				7B1120081A2BD6D2007C93F7 /* LevelZero.m in Sources */,
+				7BDC3D071A435BF700700799 /* MainLevel.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

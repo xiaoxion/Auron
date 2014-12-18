@@ -2,18 +2,16 @@
 
 @implementation MainScene
 
-bool paused = false;
+- (void)onPlay {
+    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainLevel"]];
+}
 
--(void)onPause {
-    if (paused) {
-        _levelZero.paused = false;
-        _levelZero.userInteractionEnabled = YES;
-        paused = false;
-    } else {
-        _levelZero.paused = true;
-        _levelZero.userInteractionEnabled = NO;
-        paused = true;
-    }
+- (void)onTutorial {
+    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainLevel"]];
+}
+
+- (void)onCredits {
+    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"CreditScene"]];
 }
 
 @end

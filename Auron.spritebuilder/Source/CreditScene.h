@@ -1,0 +1,3 @@
+@interface CreditScene : CCNode
+
+@end

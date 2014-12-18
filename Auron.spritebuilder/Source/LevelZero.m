@@ -22,7 +22,8 @@ bool doubleJump = false;
 - (void)didLoadFromCCB {
     self.userInteractionEnabled = TRUE;
     _physicsNode.collisionDelegate = self;
-    _slime.physicsBody.collisionType = @"slime";
+    _slimeOne.physicsBody.collisionType = @"slime";
+    _slimeTwo.physicsBody.collisionType = @"slime";
     _auron.physicsBody.collisionType = @"hero";
     _ground.physicsBody.collisionType = @"ground";
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
@@ -35,7 +36,8 @@ bool doubleJump = false;
     if (_auron.position.x < 1130.0f) {
         _auron.position = ccp(_auron.position.x + delta * speed, _auron.position.y);
     }
-    _slime.position = ccp(_slime.position.x - delta * speed, _slime.position.y);
+    _slimeOne.position = ccp(_slimeOne.position.x - delta * speed, _slimeOne.position.y);
+    _slimeTwo.position = ccp(_slimeTwo.position.x - delta * speed, _slimeTwo.position.y);
 }
 
 // Checks when jump begins and limits jump height.
@@ -81,7 +83,6 @@ bool doubleJump = false;
         _heartTwo.visible = false;
     } else if (hitCount == 2) {
         _heartOne.visible = false;
-    } else if (hitCount == 3) {
         _levelZero.paused = true;
         _levelZero.userInteractionEnabled = NO;
     }
@@ -89,7 +90,7 @@ bool doubleJump = false;
 
 // Checks collision and elimnates player if they touch the slime
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA slime:(CCNode *)nodeB {
-    [_auron.physicsBody applyImpulse:ccp(0, 1000.f)];
+    [_auron.physicsBody applyImpulse:ccp(0, 500.f)];
     return true;
 }
 
