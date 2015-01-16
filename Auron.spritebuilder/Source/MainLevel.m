@@ -7,6 +7,7 @@
 //
 
 #import "MainLevel.h"
+#import "VideoView.h"
 
 @implementation MainLevel
 LevelZero *mainLevel;
@@ -56,7 +57,11 @@ LevelZero *mainLevel;
 
 // If player reaches the end, they win to credits
 -(void)onWin {
-    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"CreditScene"]];
+    VideoView *videoView = [[VideoView alloc] initWithNibName:@"VideoView" bundle:nil];
+    videoView.videoName = @"CutScene";
+    videoView.whichScene = @"CutSceneOne";
+    
+    [[CCDirector sharedDirector] presentViewController:videoView animated:YES completion:nil];
 }
 
 // Removes hearts if the player gets hit

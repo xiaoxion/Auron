@@ -21,6 +21,11 @@
 		7BDC3D071A435BF700700799 /* MainLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC3D061A435BF700700799 /* MainLevel.m */; };
 		7BDC3D0A1A435E1400700799 /* CreditScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC3D091A435E1400700799 /* CreditScene.m */; };
 		7BDC3D181A43849600700799 /* Tutorial.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BDC3D171A43849600700799 /* Tutorial.plist */; };
+		7BEEB2661A686A8E00D18766 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BEEB2651A686A8E00D18766 /* MediaPlayer.framework */; };
+		7BEEB26E1A686E7400D18766 /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEEB26C1A686E7400D18766 /* VideoView.m */; };
+		7BEEB26F1A686E7400D18766 /* VideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BEEB26D1A686E7400D18766 /* VideoView.xib */; };
+		7BEEB2731A687D9D00D18766 /* IntroScene.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7BEEB2711A6874B600D18766 /* IntroScene.mp4 */; };
+		7BEEB2741A687DA000D18766 /* CutScene.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7BEEB2721A6874B600D18766 /* CutScene.mp4 */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
@@ -111,6 +116,12 @@
 		7BDC3D081A435E1400700799 /* CreditScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreditScene.h; path = Source/CreditScene.h; sourceTree = "<group>"; };
 		7BDC3D091A435E1400700799 /* CreditScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreditScene.m; path = Source/CreditScene.m; sourceTree = "<group>"; };
 		7BDC3D171A43849600700799 /* Tutorial.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Tutorial.plist; path = Source/Tutorial.plist; sourceTree = "<group>"; };
+		7BEEB2651A686A8E00D18766 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		7BEEB26B1A686E7400D18766 /* VideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoView.h; sourceTree = "<group>"; };
+		7BEEB26C1A686E7400D18766 /* VideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoView.m; sourceTree = "<group>"; };
+		7BEEB26D1A686E7400D18766 /* VideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoView.xib; sourceTree = "<group>"; };
+		7BEEB2711A6874B600D18766 /* IntroScene.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = IntroScene.mp4; sourceTree = "<group>"; };
+		7BEEB2721A6874B600D18766 /* CutScene.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CutScene.mp4; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
 		B71F5908188484E7003F4D28 /* iPad-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old@2x.png"; path = "Icons/iPad-old@2x.png"; sourceTree = "<group>"; };
@@ -149,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BEEB2661A686A8E00D18766 /* MediaPlayer.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
@@ -264,6 +276,15 @@
 			name = Audio;
 			sourceTree = "<group>";
 		};
+		7BEEB2701A68749300D18766 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				7BEEB2711A6874B600D18766 /* IntroScene.mp4 */,
+				7BEEB2721A6874B600D18766 /* CutScene.mp4 */,
+			);
+			name = Video;
+			sourceTree = "<group>";
+		};
 		9222E2B918734FF800A246C7 /* libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +305,9 @@
 				7B1120071A2BD6D2007C93F7 /* LevelZero.m */,
 				7BDC3D081A435E1400700799 /* CreditScene.h */,
 				7BDC3D091A435E1400700799 /* CreditScene.m */,
+				7BEEB26B1A686E7400D18766 /* VideoView.h */,
+				7BEEB26C1A686E7400D18766 /* VideoView.m */,
+				7BEEB26D1A686E7400D18766 /* VideoView.xib */,
 				7BDC3D171A43849600700799 /* Tutorial.plist */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
@@ -335,6 +359,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7BEEB2651A686A8E00D18766 /* MediaPlayer.framework */,
 				7A59493C19E37FB200F65F90 /* libz.dylib */,
 				7A59493A19E37F9300F65F90 /* OpenGL.framework */,
 				7A4036F419DE3FA8007B6E8F /* AppKit.framework */,
@@ -358,6 +383,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7BEEB2701A68749300D18766 /* Video */,
 				7B755A161A2BF6A300B2C2EB /* Audio */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
 				B73789911807667A0076A88C /* Icons */,
@@ -487,8 +513,10 @@
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
+				7BEEB26F1A686E7400D18766 /* VideoView.xib in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				7B97E84B1A41223B00D207B3 /* Default-568h@2x.png in Resources */,
+				7BEEB2741A687DA000D18766 /* CutScene.mp4 in Resources */,
 				7B97E84C1A41223B00D207B3 /* Default-Landscape@2x~ipad.png in Resources */,
 				7B755A1A1A2BF6B600B2C2EB /* Jump.mp3 in Resources */,
 				7B97E84D1A41223B00D207B3 /* Default-Landscape~ipad.png in Resources */,
@@ -498,6 +526,7 @@
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 				7B755A1B1A2BF6B600B2C2EB /* Jab.mp3 in Resources */,
+				7BEEB2731A687D9D00D18766 /* IntroScene.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BEEB26E1A686E7400D18766 /* VideoView.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				7BDC3D0A1A435E1400700799 /* CreditScene.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,

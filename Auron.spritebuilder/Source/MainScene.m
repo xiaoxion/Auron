@@ -1,6 +1,25 @@
 #import "MainScene.h"
+#import "VideoView.h"
 
 @implementation MainScene
+
+- (void)didLoadFromCCB {
+    NSString *error;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"FirstBoot.plist"];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+        NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: @"NO", nil] forKeys:[NSArray arrayWithObjects: @"FirstBoot", nil]];
+        NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+        [plistData writeToFile:plistPath atomically:YES];
+        
+        VideoView *videoView = [[VideoView alloc] initWithNibName:@"VideoView" bundle:nil];
+        videoView.videoName = @"IntroScene";
+        videoView.whichScene = @"IntroScene";
+        
+        [[CCDirector sharedDirector] presentViewController:videoView animated:YES completion:nil];
+    }
+}
 
 // Checks if the user selects play and sents the tutorial pressed to NO
 - (void)onPlay {
