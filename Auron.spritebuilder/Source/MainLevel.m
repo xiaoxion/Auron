@@ -73,7 +73,11 @@ LevelZero *mainLevel;
     
     [viewHelper startVideoView];
     
+    GKScore *daScore = [[GKScore alloc] init];
+    daScore.value = score;
+    
     [gameKit submitScore:score category:@"gLeaderAuron"];
+    [gameKit cacheScore:daScore forCategory:@"highScore"];
 }
 
 // Removes hearts if the player gets hit

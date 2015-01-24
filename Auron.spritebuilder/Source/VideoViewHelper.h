@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VideoViewHelper : NSObject <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+@interface VideoViewHelper : NSObject
 {
     
 }

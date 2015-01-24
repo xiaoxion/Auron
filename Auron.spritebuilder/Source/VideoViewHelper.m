@@ -8,6 +8,7 @@
 
 #import "VideoViewHelper.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "BlankViewController.h"
 
 @implementation VideoViewHelper
 @synthesize videoName, whichScene;
@@ -54,42 +55,16 @@ static VideoViewHelper *instanceOfVideoViewHelper;
 }
 
 - (void)moviePlayBackDidFinish:(NSNotification*)notification {
-    [self alertWithTableView];
+    BlankViewController *blank = [[BlankViewController alloc] init];
+    UIViewController* rootVC = [self getRootViewController];
+
+    blank.whichScene = whichScene;
+    [rootVC presentViewController:blank animated:YES completion:nil];
 }
 
 -(UIViewController*) getRootViewController
 {
     return [UIApplication sharedApplication].keyWindow.rootViewController;
-}
-
-// TableView creation
-+ (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString* const SwitchCellID = @"SwitchCell";
-    UITableViewCell* aCell = [tableView dequeueReusableCellWithIdentifier:SwitchCellID];
-    if( aCell == nil ) {
-        aCell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
-        aCell.textLabel.text = [NSString stringWithFormat:@"Option"];
-    }
-    return aCell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
-}
-
-- (void)alertWithTableView {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"High Scores" message:nil delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-    UITableView *myView = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150) style:UITableViewStyleGrouped];
-    
-    [myView setDelegate:self];
-    [myView setDataSource:self];
-    [alert addSubview:myView];
-    [alert show];
-}
-
-- (void) alertViewCancel:(UIAlertView *)alertView {
-    [daPlayer removeFromParentViewController];
-    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:whichScene]];
 }
 
 @end

@@ -57,15 +57,9 @@
 -(void) getPlayerInfo:(NSArray*)players;
 
 // Scores
+-(void) cacheScore:(GKScore*) score forCategory: (NSString*)category;
 -(void) submitScore:(int64_t)score category:(NSString*)category;
--(void) retrieveScoresForPlayers:(NSArray*)players
-                        category:(NSString*)category
-                           range:(NSRange)range
-                     playerScope:(GKLeaderboardPlayerScope)playerScope
-                       timeScope:(GKLeaderboardTimeScope)timeScope;
--(void) retrieveTopTenAllTimeGlobalScores;
 -(void) saveCachedScores;
--(void) reportCachedScores;
 
 
 // Achievements

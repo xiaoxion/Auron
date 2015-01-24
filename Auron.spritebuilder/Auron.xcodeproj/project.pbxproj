@@ -12,6 +12,8 @@
 		7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9790FE19E62E40001FFC4D /* libcocos2d.a */; };
 		7B1120081A2BD6D2007C93F7 /* LevelZero.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1120071A2BD6D2007C93F7 /* LevelZero.m */; };
 		7B14A6BD1A71B32D00BEF7FA /* VideoViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B14A6BC1A71B32D00BEF7FA /* VideoViewHelper.m */; };
+		7B4FE4791A7372F20076768C /* BlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4FE4771A7372F20076768C /* BlankViewController.m */; };
+		7B4FE47A1A7372F20076768C /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B4FE4781A7372F20076768C /* BlankViewController.xib */; };
 		7B755A1A1A2BF6B600B2C2EB /* Jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7B755A181A2BF6B600B2C2EB /* Jump.mp3 */; };
 		7B755A1B1A2BF6B600B2C2EB /* Jab.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7B755A191A2BF6B600B2C2EB /* Jab.mp3 */; };
 		7B97E84B1A41223B00D207B3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B97E8461A41223B00D207B3 /* Default-568h@2x.png */; };
@@ -107,6 +109,9 @@
 		7B1120071A2BD6D2007C93F7 /* LevelZero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelZero.m; path = Source/LevelZero.m; sourceTree = "<group>"; };
 		7B14A6BB1A71B32D00BEF7FA /* VideoViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoViewHelper.h; path = Source/VideoViewHelper.h; sourceTree = "<group>"; };
 		7B14A6BC1A71B32D00BEF7FA /* VideoViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoViewHelper.m; path = Source/VideoViewHelper.m; sourceTree = "<group>"; };
+		7B4FE4761A7372F20076768C /* BlankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlankViewController.h; path = Source/BlankViewController.h; sourceTree = "<group>"; };
+		7B4FE4771A7372F20076768C /* BlankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlankViewController.m; path = Source/BlankViewController.m; sourceTree = "<group>"; };
+		7B4FE4781A7372F20076768C /* BlankViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BlankViewController.xib; path = Source/BlankViewController.xib; sourceTree = "<group>"; };
 		7B755A181A2BF6B600B2C2EB /* Jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jump.mp3; sourceTree = "<group>"; };
 		7B755A191A2BF6B600B2C2EB /* Jab.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jab.mp3; sourceTree = "<group>"; };
 		7B97E8461A41223B00D207B3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Launch Images/Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -278,6 +283,9 @@
 				7BA6CDB41A6EDFFD00F5DF4D /* GameKitHelper.m */,
 				7B14A6BB1A71B32D00BEF7FA /* VideoViewHelper.h */,
 				7B14A6BC1A71B32D00BEF7FA /* VideoViewHelper.m */,
+				7B4FE4761A7372F20076768C /* BlankViewController.h */,
+				7B4FE4771A7372F20076768C /* BlankViewController.m */,
+				7B4FE4781A7372F20076768C /* BlankViewController.xib */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -539,6 +547,7 @@
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
+				7B4FE47A1A7372F20076768C /* BlankViewController.xib in Resources */,
 				7B755A1B1A2BF6B600B2C2EB /* Jab.mp3 in Resources */,
 				7BEEB2731A687D9D00D18766 /* IntroScene.mp4 in Resources */,
 			);
@@ -590,6 +599,7 @@
 				7B14A6BD1A71B32D00BEF7FA /* VideoViewHelper.m in Sources */,
 				7BDC3D071A435BF700700799 /* MainLevel.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
+				7B4FE4791A7372F20076768C /* BlankViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

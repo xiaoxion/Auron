@@ -130,7 +130,6 @@ static GameKitHelper *instanceOfGameKitHelper;
              if (error == nil)
              {
                  [self reportCachedAchievements];
-                 [self reportCachedScores];
                  [self loadAchievements];
              }
          }];
@@ -221,50 +220,11 @@ static GameKitHelper *instanceOfGameKitHelper;
     }
 }
 
--(void) uncacheScore:(GKScore*) score forCategory: (NSString*)category
-{
-    NSLog(@"uncacheScore: %lld forCategory: %@", score.value, category);
-    [cachedScores removeObjectForKey: category];
-    
-    // Save to disk immediately, to keep the removed cached scores from being loaded again
-    [self saveCachedScores];
-}
-
 -(void) saveCachedScores
 {
     NSLog(@"saveCachedScores");
     NSString* file = [NSHomeDirectory() stringByAppendingPathComponent:kCachedScoresFile];
     [NSKeyedArchiver archiveRootObject:cachedScores toFile:file];
-}
-
--(void) reportCachedScores
-{
-    NSLog(@"reportCachedScores");
-    NSLog(@"isGameCenterAvailable: %i", isGameCenterAvailable);
-    NSLog(@"[cachedScores count]: %lu", (unsigned long)[cachedScores count]);
-    if (isGameCenterAvailable == NO)
-        return;
-    
-    if ([cachedScores count] == 0)
-        return;
-    
-    for (NSString *akey in cachedScores)
-    {
-        GKScore *score = [cachedScores objectForKey: akey];
-        [score reportScoreWithCompletionHandler:^(NSError* error)
-         {
-             bool success = (error == nil);
-             if (success == YES)
-             {
-                 NSLog(@"akey:%@", akey);
-             }
-             else
-             {
-                 NSLog(@"reportCachedSores failed");
-             }
-         }];
-    }
-    
 }
 
 -(void) submitScore:(int64_t)score category:(NSString*)category
@@ -280,11 +240,7 @@ static GameKitHelper *instanceOfGameKitHelper;
          [self setLastError:error];
          
          bool success = (error == nil);
-         if (success == NO)
-         {
-             // Keep score to try to submit it later
-             [self cacheScore:gkScore forCategory: category];
-         }
+
          [_delegate onScoresSubmitted:success];
      }];
 }
