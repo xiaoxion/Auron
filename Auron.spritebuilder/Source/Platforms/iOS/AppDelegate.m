@@ -27,6 +27,7 @@
 
 #import "AppDelegate.h"
 #import "CCBuilderReader.h"
+#import "GameKitHelper.h"
 
 @implementation AppController
 
@@ -53,6 +54,9 @@
     //[cocos2dSetup setObject:kEAGLColorFormatRGB565 forKey:CCConfigPixelFormat];
     
     [self setupCocos2dWithOptions:cocos2dSetup];
+    
+    GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
+    [gkHelper authenticateLocalPlayer];
     
     return YES;
 }

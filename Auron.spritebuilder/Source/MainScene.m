@@ -1,5 +1,6 @@
 #import "MainScene.h"
-#import "VideoView.h"
+#import "VideoViewHelper.h"
+#import "GameKitHelper.h"
 
 @implementation MainScene
 
@@ -13,11 +14,11 @@
         NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
         [plistData writeToFile:plistPath atomically:YES];
         
-        VideoView *videoView = [[VideoView alloc] initWithNibName:@"VideoView" bundle:nil];
-        videoView.videoName = @"IntroScene";
-        videoView.whichScene = @"IntroScene";
-        
-        [[CCDirector sharedDirector] presentViewController:videoView animated:YES completion:nil];
+        VideoViewHelper *viewHelper = [VideoViewHelper sharedVideoViewHelper];
+        viewHelper.videoName = @"IntroScene";
+        viewHelper.whichScene = @"MainScene";
+
+        [viewHelper startVideoView];
     }
 }
 
@@ -47,6 +48,13 @@
 // Goes to credits
 - (void)onCredits {
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"CreditScene"]];
+}
+
+// Open Leaderboards
+- (void)onLeaderboard {
+    GameKitHelper *gameKit = [GameKitHelper sharedGameKitHelper];
+    
+    [gameKit showLeaderboard];
 }
 
 @end

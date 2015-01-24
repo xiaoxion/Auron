@@ -7,7 +7,9 @@
 //
 
 #import "MainLevel.h"
-#import "VideoView.h"
+#import "VideoViewHelper.h"
+#import "GameKitHelper.h"
+
 
 @implementation MainLevel
 LevelZero *mainLevel;
@@ -32,7 +34,7 @@ LevelZero *mainLevel;
     // Sets the delegate for the content nodes
     self.userInteractionEnabled = true;
     [LevelZero node];
-    mainLevel = _levelZeroView.contentNode;
+    mainLevel = (LevelZero*) _levelZeroView.contentNode;
     mainLevel.delegate = self;
     _replayButton.visible = false;
 }
@@ -57,11 +59,21 @@ LevelZero *mainLevel;
 
 // If player reaches the end, they win to credits
 -(void)onWin {
-    VideoView *videoView = [[VideoView alloc] initWithNibName:@"VideoView" bundle:nil];
-    videoView.videoName = @"CutScene";
-    videoView.whichScene = @"CutSceneOne";
+    GameKitHelper *gameKit = [GameKitHelper sharedGameKitHelper];
+    int64_t score = 0;
+    if (_heartTwo.visible) {
+        score = 2;
+    } else if (_heartOne.visible) {
+        score = 1;
+    }
     
-    [[CCDirector sharedDirector] presentViewController:videoView animated:YES completion:nil];
+    VideoViewHelper *viewHelper = [VideoViewHelper sharedVideoViewHelper];
+    viewHelper.videoName = @"CutScene";
+    viewHelper.whichScene = @"CreditScene";
+    
+    [viewHelper startVideoView];
+    
+    [gameKit submitScore:score category:@"gLeaderAuron"];
 }
 
 // Removes hearts if the player gets hit

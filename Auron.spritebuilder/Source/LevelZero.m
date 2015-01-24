@@ -18,6 +18,7 @@ NSDate* startSound;
 int hitCount = 0;
 bool jumped = false;
 bool doubleJump = false;
+bool onWinOnce = false;
 
 // Initialization and Loading of assets.
 - (void)didLoadFromCCB {
@@ -38,7 +39,10 @@ bool doubleJump = false;
     if (_auron.position.x < 1130.0f) {
         _auron.position = ccp(_auron.position.x + delta * speed, _auron.position.y);
     } else {
-        [delegate onWin];
+        if (!onWinOnce) {
+            onWinOnce = true;
+            [delegate onWin];
+        }
     }
     _slimeOne.position = ccp(_slimeOne.position.x - delta * speed, _slimeOne.position.y);
     _slimeTwo.position = ccp(_slimeTwo.position.x - delta * speed, _slimeTwo.position.y);
