@@ -9,6 +9,7 @@
 // This copy was further modified by Esau Rubio to update some outdated methods and remove unneccesary code. 
 
 #import "GameKitHelper.h"
+#import <Parse/Parse.h>
 
 static NSString* kCachedAchievementsFile = @"CachedAchievements.archive";
 static NSString* kCachedScoresFile = @"CachedScores.archive";
@@ -16,7 +17,6 @@ static NSString* kCachedScoresFile = @"CachedScores.archive";
 @interface GameKitHelper (Private)
 -(void) registerForLocalPlayerAuthChange;
 -(void) setLastError:(NSError*)error;
--(void) initCachedScores;
 -(void) cacheScore:(GKScore*) score forCategory: (NSString*)category;
 -(void) uncacheScore:(GKScore*) score forCategory: (NSString*)category;
 -(void) initCachedAchievements;
@@ -82,7 +82,6 @@ static GameKitHelper *instanceOfGameKitHelper;
         [self registerForLocalPlayerAuthChange];
         
         [self initCachedAchievements];
-        [self initCachedScores];
     }
     
     return self;
@@ -191,40 +190,12 @@ static GameKitHelper *instanceOfGameKitHelper;
 
 #pragma mark Scores & Leaderboard
 
--(void) initCachedScores
+-(void) cachedScores:(NSString *)name score:(NSNumber *)score
 {
-    NSString* file = [NSHomeDirectory() stringByAppendingPathComponent:kCachedScoresFile];
-    id object = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
-    
-    if ([object isKindOfClass:[NSMutableDictionary class]])
-    {
-        NSMutableDictionary* loadedScores = (NSMutableDictionary*)object;
-        cachedScores = [[NSMutableDictionary alloc] initWithDictionary:loadedScores];
-    }
-    else
-    {
-        cachedScores = [[NSMutableDictionary alloc] init];
-    }
-}
-
--(void) cacheScore:(GKScore*) score forCategory: (NSString*)category
-{
-    GKScore *highScoreForCategory = [cachedScores objectForKey: category];
-    NSLog(@"cacheScore: %lld forCategory: %@", score.value, category);
-    //only cache the score if it is the highest score offline because gamecenter will only keep the highest anyway
-    if (score.value > highScoreForCategory.value)
-    {
-        [cachedScores setObject:score forKey:category];
-        // Save to disk immediately, to keep achievements around even if the game crashes.
-        [self saveCachedScores];
-    }
-}
-
--(void) saveCachedScores
-{
-    NSLog(@"saveCachedScores");
-    NSString* file = [NSHomeDirectory() stringByAppendingPathComponent:kCachedScoresFile];
-    [NSKeyedArchiver archiveRootObject:cachedScores toFile:file];
+    PFObject *gameScore = [PFObject objectWithClassName:@"HighScore"];
+    gameScore[@"playerName"] = name;
+    gameScore[@"score"] = score;
+    [gameScore pinInBackground];
 }
 
 -(void) submitScore:(int64_t)score category:(NSString*)category

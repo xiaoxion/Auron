@@ -15,6 +15,7 @@
 
 @property NSString *videoName;
 @property NSString *whichScene;
+@property NSNumber *score;
 
 +(VideoViewHelper*) sharedVideoViewHelper;
 -(void)startVideoView;

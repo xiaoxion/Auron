@@ -57,7 +57,7 @@
 -(void) getPlayerInfo:(NSArray*)players;
 
 // Scores
--(void) cacheScore:(GKScore*) score forCategory: (NSString*)category;
+-(void) cachedScores:(NSString *)name score:(NSNumber *)score;
 -(void) submitScore:(int64_t)score category:(NSString*)category;
 -(void) saveCachedScores;
 

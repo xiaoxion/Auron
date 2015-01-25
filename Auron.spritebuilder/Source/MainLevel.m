@@ -70,6 +70,7 @@ LevelZero *mainLevel;
     VideoViewHelper *viewHelper = [VideoViewHelper sharedVideoViewHelper];
     viewHelper.videoName = @"CutScene";
     viewHelper.whichScene = @"CreditScene";
+    viewHelper.score = [NSNumber numberWithLongLong:score];
     
     [viewHelper startVideoView];
     
@@ -77,7 +78,6 @@ LevelZero *mainLevel;
     daScore.value = score;
     
     [gameKit submitScore:score category:@"gLeaderAuron"];
-    [gameKit cacheScore:daScore forCategory:@"highScore"];
 }
 
 // Removes hearts if the player gets hit

@@ -11,7 +11,7 @@
 #import "BlankViewController.h"
 
 @implementation VideoViewHelper
-@synthesize videoName, whichScene;
+@synthesize videoName, whichScene, score;
 MPMoviePlayerViewController *daPlayer;
 static VideoViewHelper *instanceOfVideoViewHelper;
 
@@ -57,6 +57,7 @@ static VideoViewHelper *instanceOfVideoViewHelper;
 - (void)moviePlayBackDidFinish:(NSNotification*)notification {
     BlankViewController *blank = [[BlankViewController alloc] init];
     UIViewController* rootVC = [self getRootViewController];
+    blank.score = score;
 
     blank.whichScene = whichScene;
     [rootVC presentViewController:blank animated:YES completion:nil];

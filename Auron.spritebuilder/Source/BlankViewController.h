@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BlankViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+@interface BlankViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
-    
+    IBOutlet UITableView *mainTableView;
 }
 
 @property NSString *whichScene;
+@property NSNumber *score;
+
+-(IBAction)onDone:(id)sender;
 
 @end

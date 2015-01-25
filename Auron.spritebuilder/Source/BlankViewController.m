@@ -7,17 +7,22 @@
 //
 
 #import "BlankViewController.h"
+#import "GameKitHelper.h"
+#import <Parse/Parse.h>
 
 @interface BlankViewController ()
 
 @end
 
 @implementation BlankViewController
-@synthesize whichScene;
+@synthesize whichScene,score;
+NSArray *tempArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self retrieveScores];
+    [self performSelector:@selector(enterNameAlert) withObject:nil afterDelay:.5];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,31 +32,86 @@
 
 // TableView creation
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString* const SwitchCellID = @"SwitchCell";
-    UITableViewCell* aCell = [tableView dequeueReusableCellWithIdentifier:SwitchCellID];
+    static NSString* const cellID = @"mainCell";
+    UITableViewCell* aCell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    PFObject *temp = tempArray[indexPath.row];
+    NSString *tempString = [NSString stringWithFormat:@"%@                                        %@", temp[@"playerName"], temp[@"score"]];
     if( aCell == nil ) {
         aCell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
-        aCell.textLabel.text = [NSString stringWithFormat:@"Option"];
+        aCell.textLabel.text = tempString;
     }
     return aCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return tempArray.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    int juan = 1;
+    PFObject *temp = tempArray[indexPath.row];
+    [self share:[NSString stringWithFormat:@"Try to beat my highscore of %@ by %@ on Auron!", temp[@"score"], temp[@"playerName"]]];
 }
 
-- (void)alertWithTableView {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"High Scores" message:nil delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-    [alert show];
+#pragma Alerts
+- (void)enterNameAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Enter Name" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertTextFieldDidChange:) name:UITextFieldTextDidChangeNotification object:textField];
+                                }];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
+        UITextField *name = alert.textFields.firstObject;
+        GameKitHelper *gameKit = [GameKitHelper sharedGameKitHelper];
+        [gameKit cachedScores:name.text score:score];
+        [self retrieveScores];
+                               }];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)onExit {
+- (void)alertTextFieldDidChange:(NSNotification *)notification {
+    UIAlertController *alertController = (UIAlertController *)self.presentedViewController;
+    if (alertController) {
+        UITextField *login = alertController.textFields.firstObject;
+        UIAlertAction *okAction = alertController.actions.lastObject;
+        okAction.enabled = login.text.length > 2;
+    }
+}
+
+#pragma Information
+
+-(IBAction)onDone:(id)sender {
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:whichScene]];
-    [self removeFromParentViewController];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void) retrieveScores {
+    PFQuery *query = [PFQuery queryWithClassName:@"HighScore"];
+    [query fromLocalDatastore];
+    [query orderByDescending:@"sccore"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            tempArray = objects;
+            [mainTableView reloadData];
+        }
+    }];
+}
+
+-(void)share:(NSString *)shared {
+    NSArray *activityItems = @[shared];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    [activityVC setCompletionHandler:^(NSString *activityType, BOOL completed) {
+         NSLog(@"Activity = %@",activityType);
+         NSLog(@"Completed Status = %d",completed);
+         
+         if (completed) {
+             UIAlertView *objalert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Successfully Shared" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             [objalert show];
+             objalert = nil;
+         }
+     }];
 }
 
 @end

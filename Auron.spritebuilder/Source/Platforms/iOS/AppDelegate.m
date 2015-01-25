@@ -28,6 +28,7 @@
 #import "AppDelegate.h"
 #import "CCBuilderReader.h"
 #import "GameKitHelper.h"
+#import "Parse/Parse.h"
 
 @implementation AppController
 
@@ -48,12 +49,11 @@
 #endif
     
     // Configure CCFileUtils to work with SpriteBuilder
-    [CCBReader configureCCFileUtils];
-    
-    // Do any extra configuration of Cocos2d here (the example line changes the pixel format for faster rendering, but with less colors)
-    //[cocos2dSetup setObject:kEAGLColorFormatRGB565 forKey:CCConfigPixelFormat];
-    
+    [CCBReader configureCCFileUtils];    
     [self setupCocos2dWithOptions:cocos2dSetup];
+    
+    [Parse enableLocalDatastore];
+    [Parse setApplicationId:@"GRYubbRIl8nHNdrOKgQPlUX3X8L0QfvzGKSrwUZH" clientKey:@"gYYGurDMxrONHC1NnrEu02TjgooypooqzOzuzW56"];
     
     GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
     [gkHelper authenticateLocalPlayer];
