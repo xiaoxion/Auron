@@ -1,8 +1,11 @@
 #import "MainScene.h"
 #import "VideoViewHelper.h"
 #import "GameKitHelper.h"
+#import <Parse/Parse.h>
 
 @implementation MainScene
+GameKitHelper *gameKit;
+
 
 - (void)didLoadFromCCB {
     NSString *error;
@@ -17,8 +20,23 @@
         VideoViewHelper *viewHelper = [VideoViewHelper sharedVideoViewHelper];
         viewHelper.videoName = @"IntroScene";
         viewHelper.whichScene = @"MainScene";
+        
+        PFObject *winCount = [PFObject objectWithClassName:@"Wins"];
+        PFObject *loseCount = [PFObject objectWithClassName:@"Loses"];
+        PFObject *gemCount = [PFObject objectWithClassName:@"Gems"];
+        
+        winCount[@"score"] = @0;
+        loseCount[@"score"] = @0;
+        gemCount[@"score"] = @0;
+        
+        [winCount pinInBackground];
+        [loseCount pinInBackground];
+        [gemCount pinInBackground];
 
         [viewHelper startVideoView];
+    } else {
+        gameKit = [GameKitHelper sharedGameKitHelper];
+        [gameKit authenticateLocalPlayer];
     }
 }
 
@@ -41,7 +59,6 @@
     NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: @"YES", nil] forKeys:[NSArray arrayWithObjects: @"TutorialPressed", nil]];
     NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
     [plistData writeToFile:plistPath atomically:YES];
-    
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainLevel"]];
 }
 
@@ -52,9 +69,11 @@
 
 // Open Leaderboards
 - (void)onLeaderboard {
-    GameKitHelper *gameKit = [GameKitHelper sharedGameKitHelper];
-    
     [gameKit showLeaderboard];
+}
+
+- (void)onAchievement {
+    [gameKit showAchievements];
 }
 
 @end

@@ -55,11 +55,19 @@ static VideoViewHelper *instanceOfVideoViewHelper;
 }
 
 - (void)moviePlayBackDidFinish:(NSNotification*)notification {
-    BlankViewController *blank = [[BlankViewController alloc] init];
     UIViewController* rootVC = [self getRootViewController];
-    blank.score = score;
 
+    if ([whichScene isEqualToString:@"MainScene"]) {
+        [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:whichScene]];
+        [rootVC dismissViewControllerAnimated:YES completion:nil];
+        
+        return;
+    }
+    
+    BlankViewController *blank = [[BlankViewController alloc] init];
+    blank.score = score;
     blank.whichScene = whichScene;
+    
     [rootVC presentViewController:blank animated:YES completion:nil];
 }
 

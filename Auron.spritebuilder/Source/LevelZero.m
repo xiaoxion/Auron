@@ -7,6 +7,8 @@
 //
 
 #import "LevelZero.h"
+#import <Parse/Parse.h>
+#import "GameKitHelper.h"
 
 static const CGFloat speed = 80.0f;
 
@@ -29,6 +31,9 @@ bool onWinOnce = false;
     _slimeTwo.physicsBody.collisionType = @"slime";
     _auron.physicsBody.collisionType = @"hero";
     _ground.physicsBody.collisionType = @"ground";
+    _gemOne.physicsBody.collisionType = @"gem";
+    _gemTwo.physicsBody.collisionType = @"gem";
+    _gemThree.physicsBody.collisionType = @"gem";
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     [audio preloadEffect:@"Jump.mp3"];
     [audio preloadEffect:@"Jab.mp3"];
@@ -104,6 +109,51 @@ bool onWinOnce = false;
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA ground:(CCNode *)nodeB {
     [self resetJump];
     return true;
+}
+
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)nodeA gem:(CCNode *)nodeB {
+    if ([nodeB.name isEqualToString:@"gOne"]) nodeB.visible = false;
+    if ([nodeB.name isEqualToString:@"gTwo"]) nodeB.visible = false;
+    if ([nodeB.name isEqualToString:@"gThree"]) nodeB.visible = false;
+    
+    [self retrieveAndUpdateGems];
+    
+    return true;
+}
+
+-(void) retrieveAndUpdateGems {
+    PFQuery *query = [PFQuery queryWithClassName:@"Gems"];
+    [query fromLocalDatastore];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            PFObject *temp = objects[0];
+            int miniInt = [[temp objectForKey:@"score"] intValue] + 1;
+            temp[@"score"] = [NSNumber numberWithInt:miniInt];
+            [temp pinInBackground];
+            
+            GameKitHelper *gameKit = [GameKitHelper sharedGameKitHelper];
+
+            if (miniInt > 49) {
+                if (![gameKit getAchievementByID:@"fifty_gems"].completed) {
+                    [gameKit reportAchievementWithID:@"fifty_gems" percentComplete:100.0];
+                }
+                return;
+            }
+            
+            if (miniInt > 24) {
+                if (![gameKit getAchievementByID:@"twentyfive_gems"].completed) {
+                    [gameKit reportAchievementWithID:@"twentyfive_gems" percentComplete:100.0];
+                }
+                return;
+            }
+            
+            if (miniInt > 9) {
+                if (![gameKit getAchievementByID:@"ten_gems"].completed) {
+                    [gameKit reportAchievementWithID:@"ten_gems" percentComplete:100.0];
+                }
+            }
+        }
+    }];
 }
 
 @end

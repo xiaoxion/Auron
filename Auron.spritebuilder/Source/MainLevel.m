@@ -9,6 +9,7 @@
 #import "MainLevel.h"
 #import "VideoViewHelper.h"
 #import "GameKitHelper.h"
+#import <Parse/Parse.h>
 
 
 @implementation MainLevel
@@ -77,6 +78,7 @@ LevelZero *mainLevel;
     GKScore *daScore = [[GKScore alloc] init];
     daScore.value = score;
     
+    [self retrieveAndUpdateWins];
     [gameKit submitScore:score category:@"gLeaderAuron"];
 }
 
@@ -90,6 +92,7 @@ LevelZero *mainLevel;
         _levelZeroView.paused = true;
         _levelZeroView.userInteractionEnabled = NO;
         _replayButton.visible = true;
+        [self retrieveAndUpdateLoses];
     }
 }
 
@@ -108,6 +111,52 @@ LevelZero *mainLevel;
     NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
     [plistData writeToFile:plistPath atomically:YES];
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainLevel"]];
+}
+
+-(void) retrieveAndUpdateWins {
+    PFQuery *query = [PFQuery queryWithClassName:@"Wins"];
+    [query fromLocalDatastore];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            PFObject *temp = objects[0];
+            int miniInt = [[temp objectForKey:@"score"] intValue] + 1;
+            temp[@"score"] = [NSNumber numberWithInt:miniInt];
+            [temp pinInBackground];
+            
+            if (miniInt > 0) {
+                GameKitHelper *gameKit = [GameKitHelper sharedGameKitHelper];
+                if (miniInt > 4) {
+                    if (![gameKit getAchievementByID:@"win_five"].completed) {
+                        [gameKit reportAchievementWithID:@"win_five" percentComplete:100.0];
+                    }
+                    
+                    return;
+                }
+                
+                if (![gameKit getAchievementByID:@"win_one"].completed) {
+                    [gameKit reportAchievementWithID:@"win_one" percentComplete:100.0];
+                }
+            }
+        }
+    }];
+}
+
+-(void) retrieveAndUpdateLoses {
+    PFQuery *query = [PFQuery queryWithClassName:@"Loses"];
+    [query fromLocalDatastore];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            PFObject *temp = objects[0];
+            int miniInt = [[temp objectForKey:@"score"] intValue] + 1;
+            temp[@"score"] = [NSNumber numberWithInt:miniInt];
+            [temp pinInBackground];
+            
+            if (miniInt > 1) {
+                GameKitHelper *gameKit = [GameKitHelper sharedGameKitHelper];
+                [gameKit reportAchievementWithID:@"die_twice" percentComplete:100.0];
+            }
+        }
+    }];
 }
 
 @end

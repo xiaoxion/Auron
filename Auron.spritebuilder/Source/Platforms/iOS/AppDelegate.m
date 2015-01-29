@@ -55,9 +55,6 @@
     [Parse enableLocalDatastore];
     [Parse setApplicationId:@"GRYubbRIl8nHNdrOKgQPlUX3X8L0QfvzGKSrwUZH" clientKey:@"gYYGurDMxrONHC1NnrEu02TjgooypooqzOzuzW56"];
     
-    GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
-    [gkHelper authenticateLocalPlayer];
-    
     return YES;
 }
 

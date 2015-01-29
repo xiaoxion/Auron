@@ -6,7 +6,7 @@
 //  Copyright 2010 Steffen Itterheim. All rights reserved.
 //
 // This copy was modified by Joshua Goossen to cache scores like what had already been done with the achievements.
-// This copy was further modified by Esau Rubio to update some outdated methods and remove unneccesary code. 
+// This copy was further modified by Esau Rubio to update some outdated methods and remove unneccesary code.
 
 #import "GameKitHelper.h"
 #import <Parse/Parse.h>
@@ -211,7 +211,7 @@ static GameKitHelper *instanceOfGameKitHelper;
          [self setLastError:error];
          
          bool success = (error == nil);
-
+         
          [_delegate onScoresSubmitted:success];
      }];
 }
@@ -404,10 +404,7 @@ static GameKitHelper *instanceOfGameKitHelper;
             leaderboardVC.leaderboardDelegate = self;
             [self presentViewController:leaderboardVC];
         }
-    }
-    // added moet nog testen!!
-    else
-    {
+    } else {
         GKLeaderboardViewController *leaderboardVC = [[GKLeaderboardViewController alloc] init];
         
         if (leaderboardVC != nil)

@@ -15,6 +15,9 @@
     CCNode* _heartOne;
     CCNode* _heartTwo;
     CCNode* _levelZero;
+    CCNode* _gemOne;
+    CCNode* _gemTwo;
+    CCNode* _gemThree;
     
     CCPhysicsNode* _physicsNode;
 }
